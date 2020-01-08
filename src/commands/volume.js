@@ -17,8 +17,8 @@ const volume = {
 
 		const nbr = parseInt(arg, 10);
 		if (nbr !== NaN && (nbr >= 0 && nbr <= 100)) {
-			message.channel.send(new VolumeEmbed(serverQueue.volume * 50, nbr));
-			serverQueue.volume = nbr / 50;
+			message.channel.send(new VolumeEmbed(serverQueue.volume * 100, nbr));
+			serverQueue.volume = nbr / 100;
 
 			const dispatcher = serverQueue.connection.dispatcher;
 			if (dispatcher) dispatcher.setVolumeLogarithmic(serverQueue.volume);

@@ -55,7 +55,7 @@ const play = {
 				voiceChannel: voiceChannel,
 				connection: null,
 				songs: [],
-				volume: 0.1
+				volume: 0.15
 			};
 
 			musicBot.queue.set(message.guild.id, newQueue);
