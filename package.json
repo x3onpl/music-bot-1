@@ -1,0 +1,34 @@
+{
+  "name": "@addict67/music-bot",
+  "version": "1.0.0",
+  "description": "A simple and powerful Discord.js music bot!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No test specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/addict67/music-bot.git"
+  },
+  "keywords": [
+    "discord",
+    "music",
+    "bot",
+    "youtube",
+    "discordjs"
+  ],
+  "author": "Chris Jungen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/addict67/music-bot/issues"
+  },
+  "homepage": "https://github.com/addict67/music-bot#readme",
+  "dependencies": {
+    "better-youtube-api": "^2.1.7",
+    "discord.js": "^11.5.1",
+    "ffmpeg": "0.0.4",
+    "ffmpeg-static": "^2.7.0",
+    "opusscript": "0.0.7",
+    "ytdl-core": "^1.0.5"
+  }
+}
