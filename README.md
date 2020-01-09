@@ -2,7 +2,7 @@
 
 > A simple [Discord.js](https://github.com/discordjs/discord.js) music bot with lot of features
 
-[![Build Status](https://img.shields.io/github/workflow/status/addict67/music-bot/Node%20CI)](https://github.com/addict67/music-bot/actions?query=workflow%3A%22Node+CI%22) [![Dependencies Status](https://david-dm.org/addict67/music-bot.svg)](https://david-dm.org/addict67/music-bot) [![Issues](https://img.shields.io/github/issues/addict67/music-bot)](https://github.com/addict67/music-bot/issues) [![License](https://img.shields.io/github/license/addict67/music-bot)](LICENSE)
+[![NPM Package Version](https://img.shields.io/npm/v/@addict67/music-bot)](https://www.npmjs.com/package/@addict67/music-bot) [![Build Status](https://img.shields.io/github/workflow/status/addict67/music-bot/Node%20CI)](https://github.com/addict67/music-bot/actions?query=workflow%3A%22Node+CI%22) [![Dependencies Status](https://david-dm.org/addict67/music-bot.svg)](https://david-dm.org/addict67/music-bot) [![Issues](https://img.shields.io/github/issues/addict67/music-bot)](https://github.com/addict67/music-bot/issues) [![License](https://img.shields.io/github/license/addict67/music-bot)](LICENSE)
 
 ## Commands
 
