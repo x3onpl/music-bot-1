@@ -4,21 +4,23 @@
  * Module dependencies.
  */
 const ytdl = require('ytdl-core');
-const { YouTube } = require('better-youtube-api');
+const {YouTube} = require('better-youtube-api');
 
-const PlaySongEmbed = require('../embeds/PlaySongEmbed');
-const AddSongEmbed = require('../embeds/AddSongEmbed');
-const ErrorEmbed = require('../embeds/ErrorEmbed');
+const PlaySongEmbed = require('../embeds/play-song-embed');
+const AddSongEmbed = require('../embeds/add-song-embed');
+const ErrorEmbed = require('../embeds/error-embed');
 
 /**
  * Play command.
  */
 const play = {
-    name: 'play',
-    description: 'Play the song given in argument or add it to the queue',
+	name: 'play',
+	description: 'Play the song given in argument or add it to the queue',
 	async execute(message, arg, musicBot) {
-		const voiceChannel = message.member.voiceChannel;
-		if (!voiceChannel) return message.channel.send(new ErrorEmbed('You need to be in a voice channel to play music!'));
+		const {voiceChannel} = message.member;
+		if (!voiceChannel) {
+			return message.channel.send(new ErrorEmbed('You need to be in a voice channel to play music!'));
+		}
 
 		const permissions = voiceChannel.permissionsFor(message.client.user);
 		if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
@@ -36,23 +38,24 @@ const play = {
 			const videoUrl = infos.results[0].url;
 			songInfo = await ytdl.getInfo(videoUrl);
 		}
-		
+
 		if (!songInfo) {
 			message.channel.send(new ErrorEmbed('This song is restricted or couldn\'t be found!'));
 			return;
 		}
+
 		const song = {
 			title: songInfo.title,
 			url: songInfo.video_url,
 			thumbnailUrl: songInfo.player_response.videoDetails.thumbnail.thumbnails.pop().url,
-			duration: new Date(songInfo.length_seconds * 1000).toISOString().substr(11, 8)
-        };
+			duration: new Date(songInfo.length_seconds * 1000).toISOString().slice(11, 19)
+		};
 
-        const serverQueue = musicBot.queue.get(message.guild.id);
+		const serverQueue = musicBot.queue.get(message.guild.id);
 
-		if (!serverQueue) {
+		if (serverQueue === undefined) {
 			const newQueue = {
-				voiceChannel: voiceChannel,
+				voiceChannel,
 				connection: null,
 				songs: [],
 				volume: 0.15
@@ -65,9 +68,9 @@ const play = {
 			try {
 				newQueue.connection = await voiceChannel.join();
 				this.play(message, newQueue, musicBot.queue);
-			} catch (err) {
-				console.log(err);
-				queue.delete(message.guild.id);
+			} catch (error) {
+				console.log(error);
+				musicBot.queue.delete(message.guild.id);
 				return message.channel.send(new ErrorEmbed('An error occured!'));
 			}
 		} else {
@@ -87,7 +90,7 @@ const play = {
 		const dispatcher = serverQueue.connection.playStream(ytdl(song.url, {
 			filter: 'audioonly',
 			quality: 'highestaudio',
-			highWaterMark: 1<<25
+			highWaterMark: 1 << 25
 		}))
 			.on('start', () => {
 				console.log('Music started!');
@@ -101,9 +104,9 @@ const play = {
 			.on('error', error => {
 				console.error(error);
 			});
-        dispatcher.setVolumeLogarithmic(serverQueue.volume);
+		dispatcher.setVolumeLogarithmic(serverQueue.volume);
 	}
-}
+};
 
 /**
  * Module exports.

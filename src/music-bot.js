@@ -3,21 +3,22 @@
 /**
  * Module dependencies.
  */
-const Discord = require('discord.js');
 const fs = require('fs');
+const path = require('path');
+const Discord = require('discord.js');
 
 /** Core class of the module. */
 class MusicBot {
 	/**
-	 * discordToken and googleKey attributes are mandatory.
-	 * 
+	 * DiscordToken and googleKey attributes are mandatory.
+	 *
 	 * @param {Object} options
 	 */
 	constructor(options) {
 		if (!options || !options.discordToken || !options.googleKey) {
-			throw 'Error: wrong options given';
+			throw new Error('Error: wrong options given');
 		}
-		
+
 		this.discordToken = options.discordToken;
 		this.googleKey = options.googleKey;
 		this.prefix = options.prefix || '!!';
@@ -29,7 +30,7 @@ class MusicBot {
 
 	/**
 	 * Starts bot.
-	 * 
+	 *
 	 * @api public
 	 */
 	start() {
@@ -38,14 +39,14 @@ class MusicBot {
 
 	/**
 	 * Setup bot.
-	 * 
+	 *
 	 * @api private
 	 */
 	setup_() {
 		this.client = new Discord.Client();
 		this.client.commands = new Discord.Collection();
 
-		const commandFiles = fs.readdirSync(__dirname + '/commands').filter(file => file.endsWith('.js'));
+		const commandFiles = fs.readdirSync(path.join(__dirname, '/commands')).filter(file => file.endsWith('.js'));
 
 		for (const file of commandFiles) {
 			const command = require(`./commands/${file}`);
@@ -58,19 +59,23 @@ class MusicBot {
 		});
 
 		this.client.on('message', message => {
-			if (message.author.bot || !message.content.startsWith(this.prefix)) return;
+			if (message.author.bot || !message.content.startsWith(this.prefix)) {
+				return;
+			}
 
 			const args = message.content.slice(this.prefix.length).split(/ +/);
 			const command = args.shift().toLowerCase();
 
 			const arg = args.join(' ');
 
-			if (!this.client.commands.has(command)) return;
+			if (!this.client.commands.has(command)) {
+				return;
+			}
 
 			try {
 				this.client.commands.get(command).execute(message, arg, this);
-			} catch (err) {
-				console.error(err);
+			} catch (error) {
+				console.error(error);
 			}
 		});
 	}

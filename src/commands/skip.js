@@ -3,26 +3,30 @@
 /**
  * Module dependencies.
  */
-const SkipSongEmbed = require('../embeds/SkipSongEmbed');
-const ErrorEmbed = require('../embeds/ErrorEmbed');
+const SkipSongEmbed = require('../embeds/skip-song-embed');
+const ErrorEmbed = require('../embeds/error-embed');
 
 /**
  * Skip command.
  */
 const skip = {
-    name: 'skip',
-    description: 'Skip the currently played song',
+	name: 'skip',
+	description: 'Skip the currently played song',
 	execute(message, arg, musicBot) {
-        const serverQueue = musicBot.queue.get(message.guild.id);
+		const serverQueue = musicBot.queue.get(message.guild.id);
 
-		if (!message.member.voiceChannel)
+		if (!message.member.voiceChannel) {
 			return message.channel.send(new ErrorEmbed('You have to be in a voice channel to stop the music!'));
-		if (!serverQueue)
+		}
+
+		if (!serverQueue) {
 			return message.channel.send(new ErrorEmbed('There is no song that I could skip!'));
+		}
+
 		message.channel.send(new SkipSongEmbed(serverQueue.songs[0]));
 		serverQueue.connection.dispatcher.end();
 	}
-}
+};
 
 /**
  * Module exports.
