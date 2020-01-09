@@ -14,7 +14,7 @@ class ListQueueEmbed extends DefaultEmbed {
 		if (serverQueue === undefined) {
 			this.setTitle(':asterisk: The queue is currently empty!');
 		} else {
-			for (let i = 1; i < serverQueue.songs.length; i++) {
+			for (let i = 1; i < serverQueue.songs.length && i < 26; i++) {
 				this.addField(`#${i}`, `\`${serverQueue.songs[i].title}\``);
 			}
 		}

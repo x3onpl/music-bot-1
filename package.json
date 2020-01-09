@@ -1,11 +1,14 @@
 {
   "name": "@addict67/music-bot",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "A simple and powerful Discord.js music bot!",
   "main": "index.js",
   "scripts": {
     "test": "xo",
     "xo:fix": "xo --fix"
+  },
+  "engines": {
+    "node": ">=8"
   },
   "repository": {
     "type": "git",
@@ -16,9 +19,16 @@
     "music",
     "bot",
     "youtube",
-    "discordjs"
+    "discordjs",
+    "simple",
+    "xo",
+    "ffmpeg"
   ],
-  "author": "Chris Jungen",
+  "author": {
+    "name": "Chris Jungen",
+    "email": "contact@chrisjungen.fr",
+    "url": "https://chrisjungen.fr"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/addict67/music-bot/issues"
@@ -30,7 +40,8 @@
     "ffmpeg": "0.0.4",
     "ffmpeg-static": "^3.0.0",
     "opusscript": "0.0.7",
-    "ytdl-core": "^1.0.6"
+    "ytdl-core": "^1.0.6",
+    "ytpl": "^0.1.19"
   },
   "devDependencies": {
     "xo": "^0.25.3"

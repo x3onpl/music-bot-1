@@ -2,11 +2,12 @@
 
 > A simple [Discord.js](https://github.com/discordjs/discord.js) music bot with lot of features
 
-[![NPM Package Version](https://img.shields.io/npm/v/@addict67/music-bot)](https://www.npmjs.com/package/@addict67/music-bot) [![Build Status](https://img.shields.io/github/workflow/status/addict67/music-bot/Node%20CI)](https://github.com/addict67/music-bot/actions?query=workflow%3A%22Node+CI%22) [![Dependencies Status](https://david-dm.org/addict67/music-bot.svg)](https://david-dm.org/addict67/music-bot) [![Issues](https://img.shields.io/github/issues/addict67/music-bot)](https://github.com/addict67/music-bot/issues) [![License](https://img.shields.io/github/license/addict67/music-bot)](LICENSE)
+[![NPM Package Version](https://img.shields.io/npm/v/@addict67/music-bot)](https://www.npmjs.com/package/@addict67/music-bot) [![Build Status](https://img.shields.io/github/workflow/status/addict67/music-bot/Node%20CI)](https://github.com/addict67/music-bot/actions?query=workflow%3A%22Node+CI%22) [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo) [![Dependencies Status](https://david-dm.org/addict67/music-bot.svg)](https://david-dm.org/addict67/music-bot) [![Issues](https://img.shields.io/github/issues/addict67/music-bot)](https://github.com/addict67/music-bot/issues) [![License](https://img.shields.io/github/license/addict67/music-bot)](LICENSE)
 
 ## Commands
 
-- `!!play (name|url)`: Play the song given in argument or add it to the queue
+- `!!play (title|url)`: Add a song to the queue
+- `!!playlist (url)`: Add a playlist to the queue
 - `!!current`: Display the currently played song
 - `!!skip`: Skip the currently played song
 - `!!stop`: Stop the currently played song and clear the queue
@@ -21,37 +22,28 @@ _Make sure you have the latest version of FFMPEG installed localy!_
 
 * `npm install @addict67/music-bot`
 
-MusicBot is a class, the constructor takes an object which needs:
+## Quick Start
 
-- `discordToken`: Your Discord bot token
-- `googleKey`: Your Google API key
+MusicBot's constructor takes an object with these properties:
 
-_You can add `prefix` to change the default one which is `!!`_
+- `discordToken`: Your Discord bot token. **Required to run**
+- `googleKey`: Your Google API key. **Required to run**
+- `prefix`: Your commands prefix. **Default is `!!`**
 
 ```javascript
 const MusicBot = require('@addict67/music-bot');
 
-// Instantiate the object
 const musicBot = new MusicBot({
   discordToken: 'xxx',
-  googleKey: 'xxx',
-  prefix: '!'
+  googleKey: 'xxx'
 });
 
-// Start the bot
 musicBot.start();
 ```
 
 ## Contributing
 
-1. [Fork this project](https://github.com/addict67/music-bot/fork)
-2. Clone it: `git clone https://github.com/your-username/music-bot.git`
-3. Create your feature branch: `git checkout -b my-new-feature`
-4. Test it before committing anything: `npm test`
-5. Commit your changes: `git commit -am 'Add some feature'`
-6. Push to the branch: `git push origin my-new-feature`
-7. Submit your pull request
-8. Enjoy 😀
+See the [CONTRIBUTING.md](CONTRIBUTING) file for details
 
 ## License
 
