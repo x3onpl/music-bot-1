@@ -43,7 +43,7 @@ musicBot.start();
 
 ## Contributing
 
-See the [CONTRIBUTING.md](CONTRIBUTING) file for details
+See the [CONTRIBUTING.md](CONTRIBUTING.md) file for details
 
 ## License
 
